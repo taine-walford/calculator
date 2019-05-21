@@ -1,0 +1,65 @@
+html {
+  min-height: 100%;
+}
+
+body {
+  color: #171818;
+  font-size: 30px;
+  font-family: 'Inconsolata', monospace;
+  line-height: 60px;
+  min-height: 100vh;
+}
+
+.calc-contain {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.row {
+  min-width: 400px;
+  background-image: linear-gradient(to right, #3C76AE,#104273);
+  margin: 1px auto;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly; 
+}
+
+.clear {
+  color: #104273;
+}
+
+.button {
+  background-color: white;
+  margin: 5px 0px;
+  width: 90px;
+  height: 60px;
+  text-align: center;
+  border-radius: 8%;
+}
+
+.answer-bar {
+  line-height: 40px;
+  background-image: linear-gradient(to right, #3C76AE,#104273);
+  width: 400px;
+  height: 130px;
+  margin: 0px auto;
+}
+.work-space {
+  color: #E3DFD9;
+  width: 95%;
+  height: 40px;
+  display: block;
+  margin: 0px auto;
+  text-align: right;
+}
+.answer-space {
+  display: block;
+  color: white;
+  height: 80px;
+  width: 95%;
+  margin: 0px auto;
+  font-size: 65px;
+  line-height: 80px;
+  text-align: right;
+}
