@@ -32,6 +32,7 @@ function eventHandler(element) { // Takes events and pushes their type and value
     }
     else {
       if (eventAction === 'equals') calculate();
+      else if (chunks[chunks.length-1].value === 0) chunks[chunks.length-1].value = document.getElementById("as").innerHTML;
       else if (eventAction === "ans") chunks[chunks.length-1].value += document.getElementById("as").innerHTML;
       else chunks.push({type:'action', value: eventAction}); // Otherwise new chunk
     }
