@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', main);
-// Placeholders
-// document.getElementById("ws").
-// document.getElementById("as").
 
 var classname = document.getElementsByClassName("button");
-var chunks = [{type: 'value', value: 0}]
+var chunks    = [{type: 'value', value: 0}];
 
 function main() { // Adds a listener to all 'buttons'
   for (var i = 0; i < classname.length; i++) {
@@ -16,21 +13,28 @@ function eventHandler(element) { // Takes events and pushes their type and value
   const eventAction = element.target.dataset.action;
   const eventValue  = parseInt(element.target.dataset.value);
   if (!eventAction) { // Value event
-    if(chunks[chunks.length-1].value === 0) chunks[0].value = eventValue; // If chunks 0, replace value
+    if(chunks[chunks.length-1].value === 0) chunks[0].value = String(eventValue); // If chunks 0, replace value
     else {
       if(chunks[chunks.length-1].type === 'action') { // If last was action, create new chunk
-        chunks.push({type: 'value', value: eventValue});
+        chunks.push({type: 'value', value: String(eventValue)});
       }
       else {
         chunks[chunks.length-1].value += eventValue;
       }
     } 
   }
-
   else { // Action event
-    if (chunks[chunks.length-1].type === 'action') chunks.pop();
-    if(eventAction === 'equals') calculate();
-    else chunks.push({type:'action', value: eventAction}); // Otherwise new chunk
+    if (chunks[chunks.length-1].type === 'action') {
+      if (eventAction === "ans") {
+        chunks.push({type:'value', value: document.getElementById("as").innerHTML})
+      }
+      else chunks.pop();
+    }
+    else {
+      if (eventAction === 'equals') calculate();
+      else if (eventAction === "ans") chunks[chunks.length-1].value += document.getElementById("as").innerHTML;
+      else chunks.push({type:'action', value: eventAction}); // Otherwise new chunk
+    }
   }
   if(eventAction != 'equals') document.getElementById("ws").innerHTML = translate(); // Display formatted chunks
 }
